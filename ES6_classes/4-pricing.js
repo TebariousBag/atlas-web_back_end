@@ -23,7 +23,7 @@ export default class Pricing {
 
 	// amount getter setter
 	get amount() {
-		return this._amount = amount;
+		return this._amount;
 	}
 	set amount(NewAmount) {
 		if (typeof NewAmount !== 'number') {
