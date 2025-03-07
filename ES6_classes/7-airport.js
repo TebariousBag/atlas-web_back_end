@@ -11,10 +11,6 @@ export default class Airport {
     this._name = name;
     this._code = code;
 	}
-  // toString
-  toString () {
-    return this._code;
-  }
   // sybol toStringTag
   // return code
   get [Symbol.toStringTag]() {
