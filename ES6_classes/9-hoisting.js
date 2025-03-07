@@ -15,10 +15,10 @@ export class HolbertonClass {
 }
 // moved to top so its declared before using
 export class StudentHolberton {
-  constructor(firstName, lastName, HolbertonClass) {
+  constructor(firstName, lastName, holbertonClass) {
     this._firstName = firstName;
     this._lastName = lastName;
-    this._HolbertonClass = HolbertonClass;
+    this._HolbertonClass = holbertonClass;
   }
 
   get fullName() {
@@ -26,11 +26,11 @@ export class StudentHolberton {
   }
 
   get HolbertonClass() {
-    return this._HolbertonClass;
+    return this._holbertonClass;
   }
 
   get fullStudentDescription() {
-    return `${this._firstName} ${this._lastName} - ${this._HolbertonClass.year} - ${this._HolbertonClass.location}`;
+    return `${this._firstName} ${this._lastName} - ${this._holbertonClass.year} - ${this._holbertonClass.location}`;
   }
 }
 // move classes up so they are created before using
