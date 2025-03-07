@@ -1,45 +1,46 @@
 import Currency from './3-currency';
 // no .js on import
 export default class Pricing {
-	constructor (amount, currency) {
-		// validate first
-		if (typeof amount !== 'number') {
-			throw new TypeError('Amount must be a number');
-		}
+  constructor (amount, currency) {
+    // validate first
+    if (typeof amount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
 
-		// private properties
-		this._currency = currency;
-		this._amount = amount;
-	}
+    // private properties
+    this._currency = currency;
+    this._amount = amount;
+  }
 
-	// currency getter setter
-	get currency () {
-		return this._currency;
-	}
+  // currency getter setter
+  get currency () {
+    return this._currency;
+  }
 
-	set currency (NewCurrency) {
-		this._currency = NewCurrency;
-	}
+  set currency (NewCurrency) {
+    this._currency = NewCurrency;
+  }
 
-	// amount getter setter
-	get amount() {
-		return this._amount;
-	}
-	set amount(NewAmount) {
-		if (typeof NewAmount !== 'number') {
-			throw new TypeError('Amount must be a number');
-		}
-		this._amount = NewAmount;
-	}
+  // amount getter setter
+  get amount() {
+    return this._amount;
+  }
 
-	// displayFullPrice method
-	// display amount currency_name and currency_code
-	displayFullPrice() {
-	return `${this._amount} ${this._currency.name} (${this._currency.code})`;
-	}
+  set amount(NewAmount) {
+    if (typeof NewAmount !== 'number') {
+      throw new TypeError('Amount must be a number');
+    }
+    this._amount = NewAmount;
+  }
 
-	// convertPrice method
-	static convertPrice(amount, conversionRate) {
-		return amount*conversionRate;
-	}
+  // displayFullPrice method
+  // display amount currency_name and currency_code
+  displayFullPrice() {
+    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+  }
+
+  // convertPrice method
+  static convertPrice(amount, conversionRate) {
+    return amount*conversionRate;
+  }
 }
