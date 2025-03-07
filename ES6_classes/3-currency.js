@@ -11,7 +11,7 @@ export default class Currency {
     // set private properties
     this._name = name;
     this.code = code;
-    }
+  }
   // name getter setter
 
   get name() {
