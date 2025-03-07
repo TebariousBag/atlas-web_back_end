@@ -4,7 +4,6 @@ export default function getStudentIdsSum(students) {
     // thePerson is the current person in the array
     // then we add thePerson.id to theSum and keep going until we have gone through all the people
     return students.reduce((theSum, thePerson) => theSum + thePerson.id, 0);
-
-    return 0;
   }
+  return 0;
 }
