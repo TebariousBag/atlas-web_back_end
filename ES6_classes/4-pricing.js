@@ -25,6 +25,12 @@ export default class Pricing {
 	get amount() {
 		return this._amount = amount;
 	}
+	set amount(NewAmount) {
+		if (typeof NewAmount !== 'number') {
+			throw new TypeError('Amount must be a number');
+		}
+		this._amount = NewAmount;
+	}
 
 	// displayFullPrice method
 	// display amount currency_name and currency_code
