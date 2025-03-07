@@ -30,7 +30,7 @@ export class StudentHolberton {
   }
 
   get fullStudentDescription() {
-    return `${self._firstName} ${self._lastName} - ${self._HolbertonClass.year} - ${self._HolbertonClass.location}`;
+    return `${this._firstName} ${this._lastName} - ${this._HolbertonClass.year} - ${this._HolbertonClass.location}`;
   }
 }
 // move classes up so they are created before using
@@ -44,3 +44,4 @@ const student4 = new StudentHolberton('Donald', 'Bush', class2019);
 const student5 = new StudentHolberton('Jason', 'Sandler', class2019);
 
 export const listOfStudents = [student1, student2, student3, student4, student5];
+export default listOfStudents;
