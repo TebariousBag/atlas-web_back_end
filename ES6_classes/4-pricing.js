@@ -39,7 +39,7 @@ export default class Pricing {
 	}
 
 	// convertPrice method
-	convertPrice(amount, conversionRate) {
+	static convertPrice(amount, conversionRate) {
 		return amount*conversionRate;
 	}
 }
