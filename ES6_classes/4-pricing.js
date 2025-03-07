@@ -27,5 +27,8 @@ export default class Pricing {
 	}
 
 	// displayFullPrice method
-	
+	// display amount currency_name and currency_code
+	displayFullPrice() {
+	return `${this._amount} ${this._currency.name} ${this._currency.code}`;
+	}
 }
