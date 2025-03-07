@@ -15,7 +15,7 @@ export class HolbertonClass {
 }
 // moved to top so its declared before using
 export class StudentHolberton {
-  constructor(firstName, lastName) {
+  constructor(firstName, lastName, HolbertonClass) {
     this._firstName = firstName;
     this._lastName = lastName;
     this._HolbertonClass = HolbertonClass;
