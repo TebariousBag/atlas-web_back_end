@@ -1,5 +1,3 @@
-import Currency from './3-currency';
-// no .js on import
 export default class Pricing {
   constructor(amount, currency) {
     // validate first
