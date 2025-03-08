@@ -9,6 +9,6 @@ export default function createInt8TypedArray(length, position, value) {
   const view = new Int8Array(buff);
   // set value at that index position we just got
   view[position] = value;
-  // return the vie of the buffer, but we will see the changes
-  return buff;
+  // return the view of the buffer, we will see the changes here
+  return view;
 }
