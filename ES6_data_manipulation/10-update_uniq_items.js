@@ -9,7 +9,6 @@ export default function updateUniqItems(map) {
     }
     return map;
     // if arg is not a map, throw error
-  } else {
-    throw new Error('Cannot process');
   }
+    throw new Error('Cannot process');
 }
