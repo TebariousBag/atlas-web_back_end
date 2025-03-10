@@ -6,7 +6,7 @@ export default function handleProfileSignup() {
     // then is how we handle success cases
     // print body and names
     .then(([uploadPhoto, createUser]) => {
-      console.log(`${Uploadphoto.body} ${createUser.firstName} ${createUser.lastName}`);
+      console.log(`${uploadPhoto.body} ${createUser.firstName} ${createUser.lastName}`);
     })
     // return error if any promise fails
     .catch(() => {
