@@ -20,7 +20,7 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """
     # to hold each time we run wait_random(max_delay)
     temp = []
-    # create task to run it n times and save to temp
+    # append task to run it n times and save to temp
     for i in range(n):
         temp.append(task_wait_random(max_delay))
 
