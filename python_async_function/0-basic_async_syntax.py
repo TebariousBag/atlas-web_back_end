@@ -15,9 +15,9 @@ async def wait_random(max_delay: int = 10) -> float:
     waits a random time form 0-max_delay
 
     Args:
-    	max_delay (int): time in seconds with default of 10
+        max_delay (int): time in seconds with default of 10
     Returns:
-		a float: the time in seconds that we waited
+        a float: the time in seconds that we waited
     """
     # random number, uniform ensures the numbers should not
     # pop up more often than others
