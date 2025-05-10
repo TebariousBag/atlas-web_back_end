@@ -17,7 +17,7 @@ async def async_generator() -> Generator[float, None, None]:
     count = 0
     # iterate 10 times
     while count < 10:
-        count+= 1
+        count += 1
         # sleep for 1 second
         await asyncio.sleep(1)
         # then random number between 0 - 10
