@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python3
 """
 coroutine called async_generator will loop 10 times,
 each time asynchronously wait 1 second,
