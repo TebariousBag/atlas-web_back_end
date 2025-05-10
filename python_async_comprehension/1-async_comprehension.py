@@ -18,4 +18,6 @@ async def async_comprehension() -> List[float]:
     """
     # iterate over async_generator and add to list
     # use async for, just like we use async def
+    # not sure why it didn't count when I appended
+    # to an empty list
     return [randn async for randn in async_generator()]
