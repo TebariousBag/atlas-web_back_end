@@ -25,9 +25,11 @@ class LIFOCache(BaseCaching):
             # then we del the flast
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
                 # iterate through keys until the end
-                for keys in self.cache_data:
-                    last = keys
-                    # got rid of break to wait until it gets last
+                for last in self.cache_data:
+                    # gonna pass until the end
+                    # basically do nothing until we reach the end
+                    pass
+                # now last is the last key
                 print("DISCARD:", last)
                 # then delete the last key we just located
                 del self.cache_data[last]
