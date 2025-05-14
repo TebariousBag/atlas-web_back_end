@@ -8,11 +8,11 @@ from base_caching import BaseCaching
 class FIFOCache(BaseCaching):
     """
     Class to FIFO data
-	"""
+    """
     # inherit from parent BaseCaching
     def __init__(self):
         super().__init__()
-    
+
     def put(self, key, item):
         """
         adds an item to the cache
