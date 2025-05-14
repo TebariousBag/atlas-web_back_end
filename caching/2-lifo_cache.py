@@ -24,6 +24,8 @@ class LIFOCache(BaseCaching):
             # if number of items in cache_data is more than max_items
             # then we del the flast
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                # have to initialize it first since it will not hold value until the end
+                last = None
                 # iterate through keys until the end
                 for last in self.cache_data:
                     # gonna pass until the end
