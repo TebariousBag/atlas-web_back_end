@@ -20,9 +20,11 @@ class LIFOCache(BaseCaching):
         # if there is a key and an item
         # value of key is the value of item
         if key and item:
-            # if number of items in cache_data is more than max_items
+            # if number of items in cache_data is >= max_items
             # then we del the flast
-            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
+                # initialize first with empty
+                last = None
                 # iterate through keys until the end
                 for last in self.cache_data:
                     # gonna pass until the end
