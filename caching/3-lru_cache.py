@@ -27,7 +27,7 @@ class LRUCache(BaseCaching):
         # if key is already there remove it so we can update
         if key in self.cache_data:
             self.used.remove(key)
-            
+
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             # most recently used
             lru = self.used.pop(0)
