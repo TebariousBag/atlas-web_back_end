@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 """
-
+class LRUCache that inherits from BaseCaching and is a caching system
 """
 from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
     """
+    Class for removing Least Recently Used
     """
     def __init__(self):
         super().__init__()
