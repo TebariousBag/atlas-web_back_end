@@ -21,13 +21,13 @@ class MRUCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        
+
         # if there is a key and an item
         # value of key is the value of item
         # if key is already there remove it so we can update
         if key in self.cache_data:
             self.used.remove(key)
-            
+
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             # most recently used
             mru = self.used.pop()
