@@ -12,6 +12,8 @@ class MRUCache(BaseCaching):
     # inherit from parent BaseCaching
     def __init__(self):
         super().__init__()
+        
+        self.queue = {}
 
     def put(self, key, item):
         """
