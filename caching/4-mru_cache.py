@@ -5,7 +5,7 @@ class MRUCache that inherits from BaseCaching and is a caching system
 from base_caching import BaseCaching
 
 
-class LRUCache(BaseCaching):
+class MRUCache(BaseCaching):
     """
     Class to LIFO data
     """
