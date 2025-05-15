@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-class MRUCache that inherits from BaseCaching and is a caching system
+class LRUCache that inherits from BaseCaching and is a caching system
 """
 from base_caching import BaseCaching
 
 
 class LRUCache(BaseCaching):
     """
-    Class to LIFO data
+    Class to LRU data
     """
     # inherit from parent BaseCaching
     def __init__(self):
@@ -21,7 +21,7 @@ class LRUCache(BaseCaching):
         """
         if key is None or item is None:
             return
-        
+
         # if there is a key and an item
         # value of key is the value of item
         # if key is already there remove it so we can update
@@ -49,6 +49,10 @@ class LRUCache(BaseCaching):
         # if the key exists remove it
         if key is None or key not in self.cache_data:
             return None
+        # if key is already there remove it
+        # that way we can add it again and used will be updated
+        if key in self.used:
+            self.used.remove(key)
 
         # append list with new key
         self.used.append(key)
