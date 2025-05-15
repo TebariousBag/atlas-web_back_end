@@ -30,11 +30,11 @@ class LRUCache(BaseCaching):
             
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
             # most recently used
-            mru = self.used.pop()
-            # Discard mru
-            print("DISCARD:", mru)
+            lru = self.used.pop(0)
+            # Discard lru
+            print("DISCARD:", lru)
             # then delete the last key we just located
-            del self.cache_data[mru]
+            del self.cache_data[lru]
 
         # add the new key
         self.cache_data[key] = item
@@ -47,8 +47,9 @@ class LRUCache(BaseCaching):
         """
         # when using get method, if key is not there then it returns none
         # if the key exists remove it
-        if key in self.used:
-            self.used.remove(key)
+        if key is None or key not in self.cache_data:
+            return None
+
         # append list with new key
         self.used.append(key)
         return (self.cache_data.get(key))
