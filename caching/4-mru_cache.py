@@ -47,6 +47,8 @@ class MRUCache(BaseCaching):
         """
         # when using get method, if key is not there then it returns none
         # if the key exists remove it
+        if key not in self.cache_data:
+            return None
         if key in self.used:
             self.used.remove(key)
         # append list with new key
