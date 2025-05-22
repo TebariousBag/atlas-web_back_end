@@ -60,6 +60,6 @@ class Server:
             "next_index": current_index,
             "page_size": len(data),
             "data": data
-		}
+        }
 
         return (hyper_index)
