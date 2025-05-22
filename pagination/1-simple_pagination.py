@@ -8,7 +8,6 @@ import math
 from typing import List
 
 
-
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """
     get index of page numbers
@@ -42,10 +41,10 @@ class Server:
         assert isinstance(page, int) and page > 0
         assert isinstance(page_size, int) and page_size > 0
         
-		# needs to be a tuple
+        # needs to be a tuple
         start, end = index_range(page, page_size)
         dataset = self.dataset()
-		# if not in range of dataset than return empty list
+        # if not in range of dataset than return empty list
         if start >= len(dataset):
             return []
 
