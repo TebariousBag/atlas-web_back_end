@@ -102,3 +102,40 @@ def get_db() -> connection.MySQLConnection:
     )
 
     return (connection)
+
+
+def main() -> None:
+    """
+    will obtain a database connection using get_db and
+    retrieve all rows in the users table
+    """
+    # access db
+    db = get_db()
+    # get a selector
+    selector = db.cursor
+    # execute the selector
+    # all rows and columns
+    selector.execute("Select * FROM users")
+    # get all and save so we can search through by row
+    all_info = selector.fetchall()
+
+    # iterate and assign values
+    for row in all_info:
+        name = row[0]
+        email = row[1]
+        phone = row[2]
+        ssn = row[3]
+        password = row[4]
+        ip = row[5]
+        last_login = row[6]
+        user_agent = row[7]
+        # save into a string
+        info_string = (
+            f"name={name}; email={email}; phone={phone}; ssn={ssn}; "
+            f"password={password}; ip={ip}; last_login={last_login}; user_agent={user_agent}"
+        )
+        # print each iteration
+        print(info_string)
+    # clean up by closing db and cursor
+    selector.close()
+    db.close()
