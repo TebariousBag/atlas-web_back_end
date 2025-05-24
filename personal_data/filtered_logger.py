@@ -6,6 +6,8 @@ module redacts sensitive information
 import re
 import logging
 from typing import List
+# global variablle for fields that are PII
+PII = ('name', 'email', 'phone', 'ssn', 'password')
 
 
 def filter_datum(fields: List[str], redaction: str,
@@ -50,3 +52,8 @@ class RedactingFormatter(logging.Formatter):
         # return the logging record in original format
         # it's just filtered now
         return (super().format(record))
+
+    def get_logger() -> logging.Logger:
+        """
+        
+        """
