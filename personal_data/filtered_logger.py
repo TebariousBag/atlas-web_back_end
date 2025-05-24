@@ -22,6 +22,7 @@ def filter_datum(fields: List[str], redaction: str,
     # substitute pattern, with redacted message
     return (re.sub(pattern, rf"\1={redaction}", message))
 
+
 class RedactingFormatter(logging.Formatter):
     """ Redacting Formatter class
         """
@@ -44,7 +45,8 @@ class RedactingFormatter(logging.Formatter):
         """
         # take our record message, which is part of logging
         # then run our filter on the message
-        record.msg = filter_datum(self.fields, self.REDACTION, record.msg, self.SEPARATOR)
+        record.msg = filter_datum(self.fields, self.REDACTION,
+                                  record.msg, self.SEPARATOR)
         # return the logging record in original format
         # it's just filtered now
         return (super().format(record))
