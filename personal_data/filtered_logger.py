@@ -54,6 +54,7 @@ class RedactingFormatter(logging.Formatter):
         # it's just filtered now
         return (super().format(record))
 
+
 def get_logger() -> logging.Logger:
     """
     logger named user_data with RedactingFormatter
