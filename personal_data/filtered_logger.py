@@ -31,7 +31,7 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     # takes fields as arg
-    def __init__(self, fields):
+    def __init__(self, fields: List[str]) -> None:
         """
         fields to redact
         """
