@@ -80,7 +80,7 @@ def get_logger() -> logging.Logger:
     return (logger)
 
 
-def get_db() -> MySQLConnection:
+def get_db() -> connection.MySQLConnection:
     """
     connect to secure database using protected name and password
     """
