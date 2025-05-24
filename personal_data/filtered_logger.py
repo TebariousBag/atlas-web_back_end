@@ -8,7 +8,7 @@ import logging
 from typing import List
 import os
 import mysql.connector
-from mysql.connector.connection import MySQLConnection
+from mysql.connector import connection
 # global variablle for fields that are PII
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
