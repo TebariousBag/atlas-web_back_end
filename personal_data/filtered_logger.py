@@ -9,7 +9,7 @@ from typing import List
 
 
 def filter_datum(fields: List[str], redaction: str,
-                 message: str, separator: str):
+                 message: str, separator: str) -> str:
     """
     hides the value of specific fields
     """
@@ -31,7 +31,7 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     # takes fields as arg
-    def __init__(self, fields: List[str]) -> None:
+    def __init__(self, fields):
         """
         fields to redact
         """
