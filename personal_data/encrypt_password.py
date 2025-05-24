@@ -7,7 +7,7 @@ import bcrypt
 
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
-    """ 
+    """
     validate that provided password matches hashed password
     """
     # checkpw, just check if encoded pw matches hashed password
