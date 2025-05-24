@@ -6,6 +6,9 @@ module redacts sensitive information
 import re
 import logging
 from typing import List
+import os
+import mysql.connector
+from mysql.connector.connection import MySQLConnection
 # global variablle for fields that are PII
 PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
@@ -75,3 +78,27 @@ def get_logger() -> logging.Logger:
     logger.addHandler(handler)
     # get logger returns the logger
     return (logger)
+
+
+def get_db() -> MySQLConnection:
+    """
+    connect to secure database using protected name and password
+    """
+    # setup environment variables
+    # default as “root”
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    # default as an empty string
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    #default as “localhost”
+    host = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+    # database name
+    name = os.getenv('PERSONAL_DATA_DB_NAME')
+
+    connection = mysql.connector.connect(
+        user=username,
+        password=password,
+        host=host,
+        database=name
+    )
+
+    return (connection)
