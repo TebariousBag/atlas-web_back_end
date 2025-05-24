@@ -7,7 +7,7 @@ import re
 import logging
 from typing import List
 # global variablle for fields that are PII
-PII = ('name', 'email', 'phone', 'ssn', 'password')
+PII_FIELDS = ('name', 'email', 'phone', 'ssn', 'password')
 
 
 def filter_datum(fields: List[str], redaction: str,
@@ -39,6 +39,7 @@ class RedactingFormatter(logging.Formatter):
         fields to redact
         """
         super(RedactingFormatter, self).__init__(self.FORMAT)
+        # defines fields
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
@@ -53,7 +54,23 @@ class RedactingFormatter(logging.Formatter):
         # it's just filtered now
         return (super().format(record))
 
-    def get_logger() -> logging.Logger:
-        """
-        
-        """
+def get_logger() -> logging.Logger:
+    """
+    logger named user_data with RedactingFormatter
+    """
+    # get logger
+    logger = logging.getLogger("user_data")
+    # level is warning by default, info is basic
+    logger.setLevel(logging.INFO)
+    # without this it sends to root and can duplicate messages
+    logger.propagate = False
+    # task asks for stream handler
+    handler = logging.StreamHandler()
+    # we want redactingformatter
+    formatter = RedactingFormatter(fields=list(PII_FIELDS))
+    # now we set the format to handler
+    handler.setFormatter(formatter)
+    # adding a handler
+    logger.addHandler(handler)
+    # get logger returns the logger
+    return (logger)
