@@ -29,13 +29,14 @@ def before_request_func():
     if auth is None:
         return
 
-    # 
+    # list of paths
     path_list = [
         '/api/v1/status/',
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/'
     ]
 
+    # auth require_auth of request.path and path_list
     if not auth.require_auth(request.path, path_list):
         return
 
