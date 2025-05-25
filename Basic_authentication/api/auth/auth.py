@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """
+class is the template for all authentication system
 """
 
 from flask import request
