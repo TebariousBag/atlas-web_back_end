@@ -4,6 +4,8 @@ class BasicAuth that inherits from Auth
 """
 
 import base64
+from models.user import User
+from typing import TypeVar
 from api.v1.auth.auth import Auth
 
 
@@ -67,3 +69,29 @@ class BasicAuth(Auth):
         email, password = decoded_base64_authorization_header.split(':')
 
         return email, password
+
+    def user_object_from_credentials(self, user_email: str,
+                                     user_pwd: str) -> TypeVar('User'):
+        """
+        returns the User instance based on his email and password
+        """
+        if user_email is None or not isinstance(user_email, str):
+            return None
+
+        if user_pwd is None or not isinstance(user_pwd, str):
+            return None
+
+        # search User email for user_email
+        users = User.search({'email': user_email})
+
+        # if there are no matching users then return none
+        if not users:
+            return None
+        # iterate through users, and see if password is valid
+        # use the valid password method we created
+        # if so return user
+        for user in users:
+            if user.is_valid_password(user_pwd):
+                return user
+        return None
+
