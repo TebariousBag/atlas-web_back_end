@@ -62,8 +62,8 @@ class BasicAuth(Auth):
         if ':' not in decoded_base64_authorization_header:
             return None, None
 
-		# split email, password at the colon
+        # split email, password at the colon
         # says assume only one colon is used
         email, password = decoded_base64_authorization_header.split(':')
-        
+
         return email, password
