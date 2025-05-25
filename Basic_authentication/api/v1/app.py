@@ -20,6 +20,7 @@ auth = None
 if getenv("AUTH_TYPE") == "auth":
     auth = Auth()
 
+
 # before request performs actions each time a request is made
 @app.before_request
 def before_request_func():
@@ -45,6 +46,7 @@ def before_request_func():
 
     if auth.current_user(request) is None:
         abort(403)
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
