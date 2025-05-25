@@ -3,6 +3,7 @@
 class BasicAuth that inherits from Auth
 """
 
+import base64
 from api.v1.auth.auth import Auth
 
 
@@ -27,3 +28,22 @@ class BasicAuth(Auth):
 
         # split after the first 6 characters
         return authorization_header[6:]
+
+    def decode_base64_authorization_header(
+            self, base64_authorization_header: str) -> str:
+        """
+        returns the decoded value of a Base64 string
+        """
+        if base64_authorization_header is None:
+            return None
+
+        if not isinstance(base64_authorization_header, str):
+            return None
+
+        try:
+            # variable to hold the decoded bytes
+            decoded = base64.b64decode(base64_authorization_header)
+            # now decode to utf-8 so we can return as a string
+            return decoded.decode('utf-8')
+        except Exception:
+            return None
