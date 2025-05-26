@@ -8,6 +8,7 @@ from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 import os
 from api.v1.auth.auth import Auth
+from api.v1.auth.session_auth import SessionAuth
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
@@ -16,15 +17,15 @@ CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 # variable auth is None
 auth = None
 # if AUTH_TYPE is basic_auth
-# then import basiic_auth
+# then import session_auth
 if getenv("AUTH_TYPE") == "basic_auth":
     from api.v1.auth.basic_auth import BasicAuth
     auth = BasicAuth()
 # else if AUTH_TYPE is auth
 # then local variable auth = Auth()
-elif getenv("AUTH_TYPE") == "auth":
+elif getenv("AUTH_TYPE") == "session_auth":
     from api.v1.auth.auth import Auth
-    auth = Auth()
+    auth = SessionAuth()
 
 
 # before request performs actions each time a request is made
