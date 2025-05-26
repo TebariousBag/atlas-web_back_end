@@ -65,7 +65,8 @@ class DB:
         """
         update user
         """
-        if user_id is None:
+        attr = kwargs
+        if user_id is None or attr is None:
             raise ValueError
         # find_user_by user_id
         user = self.find_user_by(id=user_id)
