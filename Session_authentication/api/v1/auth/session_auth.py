@@ -56,9 +56,7 @@ class SessionAuth(Auth):
         # get session id from cookie
         session_id = self.session_cookie(request)
 
-
         user_id = self.user_id_for_session_id(session_id)
-
 
         # get from database
         return User.get(user_id)
