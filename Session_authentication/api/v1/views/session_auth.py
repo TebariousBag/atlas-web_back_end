@@ -25,6 +25,8 @@ def login() -> str:
     user = User.search({"email": email})
     if not user:
         return jsonify({"error": "no user found for this email"}), 404
+    # need to single out the first user, not all users
+    user = user[0]
     # use is valid password to check if it matches
     if not user.is_valid_password(password):
         return jsonify({"error": "wrong password"}), 401
