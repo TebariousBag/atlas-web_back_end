@@ -5,6 +5,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import InvalidRequestError
 
 from user import Base
 from user import User
@@ -46,3 +48,15 @@ class DB:
         self._session.refresh(new_user)
 
         return new_user
+
+    def find_user_by(self, **kwargs) -> User:
+        """
+        takes in kwargs and filters by first matching user
+        """
+        try:
+            user = self._session.query(User).filter_by(**kwargs).first()
+            if user is None:
+                raise NoResultFound()
+            return user
+        except InvalidRequestError:
+            raise
