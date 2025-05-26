@@ -32,7 +32,6 @@ class SessionAuth(Auth):
 
         return session_id
 
-
     def user_id_for_session_id(self, session_id: str = None) -> str:
         """
         returns a User ID based on a Session ID
