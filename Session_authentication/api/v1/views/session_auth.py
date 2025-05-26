@@ -62,3 +62,18 @@ def destroy_session(self, request=None) -> bool:
 
     del self.user_id_by_session_id[session_id]
     return True
+
+@app_views.route('/auth_session/logout', methods=['DELETE'],
+                 strict_slashes=False)
+def logout() -> str:
+    """
+    log out user from session
+    """
+    from api.v1.app import auth
+
+    # use the destroy method we just made to delete
+    session = auth.destroy_session(request)
+    if session is False:
+        abort(404)
+
+    return jsonify({}), 200
