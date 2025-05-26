@@ -17,7 +17,7 @@ class User(Base):
 
 	# defining table, mainly names and types
 	# i didn't use string lengths
-	id = Column(Integer, primary_key=False)
+	id = Column(Integer, primary_key=True)
 	email = Column(String, nullable=False)
 	hashed_password = Column(String, nullable=False)
 	session_id = Column(String, nullable=True)
