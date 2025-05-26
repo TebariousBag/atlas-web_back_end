@@ -7,12 +7,7 @@ arguments and returns bytes
 import bcrypt
 
 
-# class auth?
-class Auth:
-    """
-    auth class for db
-    """
-    def _hash_password(self, password: str) -> bytes:
+def _hash_password(self, password: str) -> bytes:
         """
         takes in a password string arguments and returns bytes
         """
