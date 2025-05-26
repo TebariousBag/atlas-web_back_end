@@ -36,7 +36,7 @@ class DB:
         """
         add user to db
         """
-        new_user = User(email=email, hased_password=hashed_password)
+        new_user = User(email=email, hashed_password=hashed_password)
         # add user
         self._session.add(new_user)
         # then save to db with commit
