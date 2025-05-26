@@ -65,9 +65,19 @@ class DB:
         """
         update user
         """
-        attr = kwargs
-        if user_id is None or attr is None:
-            raise ValueError
-        # find_user_by user_id
+        # find user by user id
         user = self.find_user_by(id=user_id)
-        # return nothing
+
+        if user is None:
+            raise ValueError
+
+        # iterate through key pair values
+        for key, value in kwargs.items():
+            # if missing attr then raise error
+            if not hasattr(user, key):
+                raise ValueError
+        # set attributes
+        setattr(user, key, value)
+        # save
+        self._session.commit()
+        self._session.refresh(user)
