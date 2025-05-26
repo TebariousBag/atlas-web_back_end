@@ -34,3 +34,11 @@ def login() -> str:
     # session id for user id
     # using auth.create_session(..)
     session_id = auth.create_session(user.id)
+    # jsonify user data
+    response = jsonify(user.to_json())
+    # must use the value of the environment variable SESSION_NAME
+    session_name = os.getenv("SESSION_NAME")
+    # must set the cookie to the response
+    response.set_cookie(session_name, session_id)
+
+    return response
