@@ -28,4 +28,9 @@ def login() -> str:
     # use is valid password to check if it matches
     if not user.is_valid_password(password):
         return jsonify({"error": "wrong password"}), 401
-    
+    # not on top of the file (can generate circular import
+    # from api.v1.app import auth
+    from api.v1.app import auth
+    # session id for user id
+    # using auth.create_session(..)
+    session_id = auth.create_session(user.id)
