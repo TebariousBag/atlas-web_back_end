@@ -60,3 +60,13 @@ class DB:
             return user
         except InvalidRequestError:
             raise
+
+    def update_user(self, user_id: int = None, **kwargs) -> None:
+        """
+        update user
+        """
+        if user_id is None:
+            raise ValueError
+        # find_user_by user_id
+        user = self.find_user_by(id=user_id)
+        # return nothing
