@@ -9,7 +9,7 @@ import os
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def login():
+def login() -> str:
     """
     handles the user login
     """
@@ -21,3 +21,7 @@ def login():
     password = request.form.get('password')
     if not password:
         return jsonify({"error": "password missing"}), 400
+    # get user info based off email
+    user = User.search({"email": email})
+    if not user:
+        return jsonify({"error": "no user found for this email"}), 404
