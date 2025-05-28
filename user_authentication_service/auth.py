@@ -31,6 +31,7 @@ class Auth:
             user = self._db.add_user(email, hashed_pass)
             return user
 
+
 def _hash_password(password: str) -> bytes:
     """
     takes in a password string arguments and returns bytes
