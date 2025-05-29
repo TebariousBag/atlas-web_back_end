@@ -32,6 +32,25 @@ class Auth:
             return user
 
 
+    def valid_login(self, email: str, password: str) -> bool:
+        """
+        authorize credentials
+        """
+        try:
+            # find user by email
+            user = self._db.find_user_by(email=email)
+            # encode before we compare it
+            bytes_pass = password.encode('utf-8')
+            hashed_pass = user.hashed_password
+            # i think bcrypt.checkpw already returns true, but just in case
+            if bcrypt.checkpw(bytes_pass, hashed_pass):
+                return True
+            return False
+        # i have to have an except
+        except NoResultFound:
+            return False
+
+
 def _hash_password(password: str) -> bytes:
     """
     takes in a password string arguments and returns bytes
