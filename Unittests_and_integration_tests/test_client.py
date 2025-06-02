@@ -76,5 +76,20 @@ class TestGithubOrgClient(unittest.TestCase):
                 'https://fake.api/repos'
                 )
 
+    # input values dict
+    # one true statement, one false statement
+    @parameterized.expand([
+        ({"license": {"key": "my_license"}}, "my_license", True),
+        ({"license": {"key": "other_license"}}, "my_license", False),
+    ])
+    def test_has_license(self, repo, license_key, expected):
+        """
+        teast for has_license
+        """
+        # get our chpsen results
+        result = GithubOrgClient.has_license(repo, license_key)
+        # and assert that they match what is expected
+        self.assertEqual(result, expected)
+
 if __name__ == '__main__':
     unittest.main()
