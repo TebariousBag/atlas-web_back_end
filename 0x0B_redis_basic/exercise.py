@@ -67,7 +67,12 @@ class Cache:
         """
         get string string
         """
+        #  getting the key and running fn to decode the data
+        return self.get(key, fn=lambda data: data.decode('utf-8'))
+
     def get_int(self, key: str):
         """
         get string int
         """
+        # gets the data and returns it as an int
+        return self.get(key, fn=int)
