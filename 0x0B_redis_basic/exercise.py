@@ -12,10 +12,7 @@ def count_calls(method: Callable) -> Callable:
     """ counts the amount of times method is called """
     @wraps(method)
     def wrapfunc(self, *args, **kwargs):
-        """
-        wraps and counts how many times methos is called
-        """
-        # qualified name
+        """ wraps and counts how many times methos is called """
         key = method.__qualname__
         # increment counter
         self._redis.incr(key)
