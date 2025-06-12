@@ -5,7 +5,26 @@ Writing strings to Redis
 import uuid
 import redis
 from typing import Union, Callable
+import functools
 
+
+def count_calls(method: Callable) -> Callable:
+    """
+    counts the amount of times method is called
+    """
+    @functools.wraps(method)
+    def wrapfunc(self, *args, **kwargs):
+        """
+        wraps and counts how many times methos is called
+        """
+        # qualified name
+        key = method.__qualname__
+        # increment counter
+        self._redis.incr(key)
+        # call our method and save it under counter
+        counter = method(self, *args, **kwargs)
+        # and return the counter
+        return counter
 
 class Cache:
     def __init__(self):
@@ -34,7 +53,7 @@ class Cache:
         retrieve key and attempt to convert by fn
         """
         # get key data in bytes
-        keyvalue = self.redis.get(key)
+        keyvalue = self._redis.get(key)
         # if no key
         if keyvalue is None:
             return None
