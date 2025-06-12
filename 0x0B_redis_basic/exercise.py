@@ -9,9 +9,7 @@ import functools
 
 
 def count_calls(method: Callable) -> Callable:
-    """
-    counts the amount of times method is called
-    """
+    """ counts the amount of times method is called """
     @functools.wraps(method)
     def wrapfunc(self, *args, **kwargs):
         """
