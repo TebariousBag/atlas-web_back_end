@@ -4,7 +4,7 @@ Writing strings to Redis
 """
 import uuid
 import redis
-from typing import Union
+from typing import Union, Callable
 
 
 class Cache:
@@ -28,3 +28,18 @@ class Cache:
         # set, or stroe data
         self._redis.set(key, data)
         return key
+
+    def get(self, key: str, fn: Callable = None):
+        """
+        retrieve key and attempt to convert by fn
+        """
+        # get key data in bytes
+        keyvalue = self.redis.get(key)
+        # if no key
+        if keyvalue is None:
+            return None
+        # if we have an fn, return key but converted
+        if fn:
+            return fn(keyvalue)
+        # or else just return the keyvalue
+        return keyvalue
