@@ -25,6 +25,8 @@ def count_calls(method: Callable) -> Callable:
         counter = method(self, *args, **kwargs)
         # and return the counter
         return counter
+    # return the wrapper function
+    return wrapfunc
 
 class Cache:
     def __init__(self):
