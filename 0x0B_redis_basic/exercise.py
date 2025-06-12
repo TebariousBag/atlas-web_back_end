@@ -5,12 +5,12 @@ Writing strings to Redis
 import uuid
 import redis
 from typing import Union, Callable
-import functools
+from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
     """ counts the amount of times method is called """
-    @functools.wraps(method)
+    @wraps(method)
     def wrapfunc(self, *args, **kwargs):
         """
         wraps and counts how many times methos is called
