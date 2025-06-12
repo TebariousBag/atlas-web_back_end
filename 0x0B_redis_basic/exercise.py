@@ -43,3 +43,12 @@ class Cache:
             return fn(keyvalue)
         # or else just return the keyvalue
         return keyvalue
+
+    def get_str(self, key: str):
+        """
+        get string string
+        """
+    def get_int(self, key: str):
+        """
+        get string int
+        """
