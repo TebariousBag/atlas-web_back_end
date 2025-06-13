@@ -45,6 +45,7 @@ def count_calls(method: Callable) -> Callable:
     # return the wrapper function
     return wrapfunc
 
+
 class Cache:
     def __init__(self):
         """
@@ -54,7 +55,6 @@ class Cache:
         self._redis = redis.Redis()
         # and flush the db each time
         self._redis.flushdb()
-
 
     @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
@@ -96,6 +96,7 @@ class Cache:
         """
         # gets the data and returns it as an int
         return self.get(key, fn=int)
+
 
 def replay(method: Callable):
     """ history of calls """
