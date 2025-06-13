@@ -96,3 +96,8 @@ class Cache:
         """
         # gets the data and returns it as an int
         return self.get(key, fn=int)
+
+def replay(method: Callable):
+    """ history of calls """
+    redis.lrange()
+    zip()
