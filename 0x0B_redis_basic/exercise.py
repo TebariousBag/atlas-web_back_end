@@ -8,6 +8,28 @@ from typing import Union, Callable
 from functools import wraps
 
 
+def call_history(method: Callable) -> Callable:
+    """
+    store history of inputs and outputs
+    """
+    @wraps(method)
+    def wrapfunc(self, *args, **kwargs):
+        """ wraps and storage for inputs and outputs """
+        # keeps track of inputs
+        input_key = method.__qualname__ + ":inputs"
+        # keeps track of outputs
+        output_key = method.__qualname__ + ":outputs"
+        # append value to string to store in redis
+        self._redis.rpush(input_key, str(args))
+        # run method and store it
+        output = method(self, *args, **kwargs)
+        # append value to string to store in redis
+        self._redis.rpush(output_key, str(output))
+        return output
+
+    return wrapfunc
+
+
 def count_calls(method: Callable) -> Callable:
     """ counts the amount of times method is called """
     @wraps(method)
@@ -34,7 +56,7 @@ class Cache:
         self._redis.flushdb()
 
 
-    @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         takes a data argument and returns a string
