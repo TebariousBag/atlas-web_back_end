@@ -2,18 +2,26 @@
 DELIMITER //
 
 CREATE PROCEDURE AddBonus(
-IN p_user_id INT,
-IN p_project_name VARCHAR(255),
-IN p_score INT
+IN user_id INT,
+IN project_name VARCHAR(255),
+IN score INT
 )
 BEGIN
-INSERT IGNORE INTO projects (name) VALUES (p_project_name);
+INSERT IGNORE INTO projects (name) VALUES (project_name);
 INSERT INTO corrections (user_id, project_id, score)
 VALUES (
-p_user_id,
-(SELECT id FROM projects WHERE name = p_project_name),
-p_score
+user_id,
+(SELECT id FROM projects WHERE name = project_name),
+score
 );
+
+UPDATE users
+SET average_score = (
+SELECT AVG(score)
+FROM corrections
+WHERE user_id = user_id
+)
+WHERE id = user_id;
 END; //
 
 DELIMITER ;
