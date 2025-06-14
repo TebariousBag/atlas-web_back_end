@@ -1,17 +1,19 @@
--- script that creates a stored procedure AddBonus that adds a new correction for a student
-
+-- creates a stored procedure AddBonus that adds a new correction for a student
 DELIMITER //
-CREATE PROCEDURE Addbonus(
-	IN the_user_id int
-)
 
+CREATE PROCEDURE AddBonus(
+IN p_user_id INT,
+IN p_project_name VARCHAR(255),
+IN p_score INT
+)
 BEGIN
-DECLARE result float;
-SELECT AVG(score) INTO result
-FROM corrections
-WHERE user_id = the_user_id;
-UPDATE users
-SET average_score = result
-WHERE id = the_user_id;
-END //
+INSERT IGNORE INTO projects (name) VALUES (p_project_name);
+INSERT INTO corrections (user_id, project_id, score)
+VALUES (
+p_user_id,
+(SELECT id FROM projects WHERE name = p_project_name),
+p_score
+);
+END; //
+
 DELIMITER ;
