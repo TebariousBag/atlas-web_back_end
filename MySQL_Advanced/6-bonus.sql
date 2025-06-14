@@ -1,27 +1,21 @@
 -- creates a stored procedure AddBonus that adds a new correction for a student
+
 DELIMITER //
-
 CREATE PROCEDURE AddBonus(
-IN user_id INT,
-IN project_name VARCHAR(255),
-IN score INT
-)
+    user_id int,
+    project_name char(255),
+    score int)
 BEGIN
-INSERT IGNORE INTO projects (name) VALUES (project_name);
+DECLARE project_id INT;
+SELECT id INTO project_id
+FROM projects
+WHERE name = project_name;
+IF project_id IS NULL THEN
+INSERT INTO projects (name) VALUES (project_name);
+-- found LAST_INSERT_ID
+SET project_id = LAST_INSERT_ID();
+END IF;
 INSERT INTO corrections (user_id, project_id, score)
-VALUES (
-user_id,
-(SELECT id FROM projects WHERE name = project_name),
-score
-);
-
-UPDATE users
-SET average_score = (
-SELECT AVG(score)
-FROM corrections
-WHERE user_id = user_id
-)
-WHERE id = user_id;
-END; //
-
+VALUES (user_id, project_id, score);
+END//
 DELIMITER ;
