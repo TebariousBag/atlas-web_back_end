@@ -9,4 +9,4 @@ IF NEW.email != OLD.email THEN
 SET NEW.valid_email = FALSE;
 END IF;
 END; //
-DELIMITER;
+DELIMITER ;
