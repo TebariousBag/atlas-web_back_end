@@ -9,7 +9,7 @@ BEGIN
 DECLARE result float;
 SELECT AVG(score) INTO result
 FROM corrections
-WHERE corrections.user_id = the_user_id;
+WHERE user_id = the_user_id;
 UPDATE users
 SET average_score = result
 WHERE id = the_user_id;
