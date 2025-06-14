@@ -2,16 +2,16 @@
 
 DELIMITER //
 CREATE PROCEDURE Addbonus(
-	IN the_user_id int
+	IN the_user_id INT
 )
 
 BEGIN
-DECLARE result float;
+DECLARE result FLOAT;
 SELECT AVG(score) INTO result
 FROM corrections
 WHERE user_id = the_user_id;
 UPDATE users
 SET average_score = result
 WHERE id = the_user_id;
-END //
+END; //
 DELIMITER ;
