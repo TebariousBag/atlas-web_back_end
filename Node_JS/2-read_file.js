@@ -5,7 +5,7 @@ const fs = require('fs');
 function countStudents(path) {
   // read sycnchnously
   // save to variable so we can log it
-  const data = fs.readFileSync(path);
+  const data = fs.readFileSync(path, 'utf-8');
   console.log(data);
 }
 
