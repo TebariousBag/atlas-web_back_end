@@ -36,20 +36,20 @@ function countStudents(path) {
         studInField[field].push(firstName);
       }
       // save to var so we can return in our resolve
-      let result = `Number of students: ${totalStudents}\n`;
+      let result = `Number of students: ${totalStudents}`;
       // respond with the message
       for (const field in studInField) {
         if (Object.prototype.hasOwnProperty.call(studInField, field)) {
           const students = studInField[field];
 		  const line = `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`
-          console.log();
-		  console.log(line);
-		  result += `${line}\n`
+		  process.stdout.write(line);
+		  result += `${line}`
         }
       }
 
       // resolve after logging is complete
-      resolve(result);
+	  // trim the result so i don't keep having extra lines
+      resolve(result.trim());
     });
   });
 }
