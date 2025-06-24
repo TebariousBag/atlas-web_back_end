@@ -3,12 +3,14 @@
 const fs = require('fs');
 
 function countStudents(path) {
-  // if fails throw error
-  if (!fs.existsSync(path)) {
-    throw new Error('Cannot load the database');
-  }
-  // read file from database.csv
-  const dataFromDb = fs.readFileSync(path, 'utf-8');
+  // so we need to wrap in a promise
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, 'utf-8', (err, dataFromDb) => {
+      if (err) {
+        reject(new Error('Cannot load the database'));
+        return;
+      }
+
   // from our data trim whitespace from beginning and end
   // split everytime there is a newline character
   const splitData = dataFromDb.trim().split('\n');
@@ -20,7 +22,7 @@ function countStudents(path) {
 
   const studInField = {};
   // loop through all split data, start at one to skip header
-  for (let i = 1; i < splitData.length; i += 1) {
+  for (let i = 1; i < splitData.length; i++) {
     // split at , and assign and trim data for each respectively
     const column = splitData[i].split(',');
     const firstName = column[0].trim();
@@ -35,12 +37,13 @@ function countStudents(path) {
   }
   // respond with the message
   for (const field in studInField) {
-    // had to change for linter
-    if (Object.prototype.hasOwnProperty.call(studInField, field)) {
-      const students = studInField[field];
-      console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
-    }
+    const students = studInField[field];
+    console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
   }
+
+      resolve();
+    });
+  });
 }
 // remember to export the function
 module.exports = countStudents;
