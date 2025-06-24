@@ -41,14 +41,14 @@ function countStudents(path) {
       for (const field in studInField) {
         if (Object.prototype.hasOwnProperty.call(studInField, field)) {
           const students = studInField[field];
-		  const line = `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`
-		  process.stdout.write(line);
-		  result += `\n${line}`
+          const line = `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`;
+          process.stdout.write(line);
+          result += `\n${line}`;
         }
       }
 
       // resolve after logging is complete
-	  // trim the result so i don't keep having extra lines
+      // trim the result so i don't keep having extra lines
       resolve(result.trim());
     });
   });

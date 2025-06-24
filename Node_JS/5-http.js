@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 const http = require('http');
-const fs = require('fs');
+
 const port = 1245;
 // import from our file 3
 const countStudents = require('./3-read_file_async');
@@ -16,11 +16,11 @@ const app = http.createServer((req, res) => {
   } else if (req.url === '/students') {
     countStudents(db)
       .then((data) => {
-      res.end(`This is the list of our students\n${data}`);
-    });
+        res.end(`This is the list of our students\n${data}`);
+      });
   }
 });
-
+// defined port above
 app.listen(port);
-
+// always export
 module.exports = app;
