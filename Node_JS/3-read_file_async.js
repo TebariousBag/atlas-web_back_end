@@ -35,17 +35,21 @@ function countStudents(path) {
         }
         studInField[field].push(firstName);
       }
-
+      // save to var so we can return in our resolve
+      let result = `Number of students: ${totalStudents}\n`;
       // respond with the message
       for (const field in studInField) {
         if (Object.prototype.hasOwnProperty.call(studInField, field)) {
           const students = studInField[field];
-          console.log(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
+		  const line = `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`
+          console.log();
+		  console.log(line);
+		  result += `${line}\n`
         }
       }
 
       // resolve after logging is complete
-      resolve();
+      resolve(result);
     });
   });
 }
