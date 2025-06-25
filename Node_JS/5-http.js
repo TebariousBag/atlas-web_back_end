@@ -7,6 +7,7 @@ const port = 1245;
 const countStudents = require('./3-read_file_async');
 // db must be passed as arg, index 2 is first actual arg
 const db = process.argv[2];
+
 // create our server, we want plain text
 const app = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
@@ -21,6 +22,9 @@ const app = http.createServer((req, res) => {
   }
 });
 // defined port above
-app.listen(port);
+app.listen(port, () => {
+  console.log(`Server is running and listening on port ${port}`);
+});
+
 // always export
 module.exports = app;
