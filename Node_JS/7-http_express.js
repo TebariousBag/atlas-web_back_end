@@ -18,7 +18,6 @@ app.get('/', (req, res) => {
   res.send('Hello Atlas School!');
 });
 
-studs = countStudents(db)
 // get request when some visits /students
 app.get('/students', (req, res) => {
   // call function from 3-readfile
@@ -29,5 +28,5 @@ app.get('/students', (req, res) => {
       res.type('text/plain');
       // and we will send the stud data back to user
       res.send(`This is the list of our students\n${studs}`);
-    })
+    });
 });
