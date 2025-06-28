@@ -6,6 +6,7 @@ describe('getPaymentTokenFromAPI', function() {
 		// wait for the response of true
 		const answer = await getPaymentTokenFromAPI(true);
 		// deep equal for content, strict equal for identity
-		expect(answer).to.deep.equal({data: 'Successful response from the API' })
+		expect(answer).to.deep.equal({data: 'Successful response from the API' });
+		done();
 	});
 });
