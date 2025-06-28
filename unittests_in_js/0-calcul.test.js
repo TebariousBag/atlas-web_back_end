@@ -23,4 +23,8 @@ describe('calculateNumber', function() {
     assert.strictEqual(calculateNumber(0, .5), 1);
   });
 
+  it('supposed to return -2 when adding -1 and -1.5', function() {
+    assert.strictEqual(calculateNumber(-1, -1.5), -2);
+  });
+
 });
