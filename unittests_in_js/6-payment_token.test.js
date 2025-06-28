@@ -7,6 +7,5 @@ describe('getPaymentTokenFromAPI', function() {
 		const answer = await getPaymentTokenFromAPI(true);
 		// deep equal for content, strict equal for identity
 		expect(answer).to.deep.equal({data: 'Successful response from the API' });
-		done();
 	});
 });
