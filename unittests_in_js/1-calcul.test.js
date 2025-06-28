@@ -19,6 +19,11 @@ describe('calculateNumber', function() {
 		it('should subtract 2 values', function() {
 			assert.strictEqual(calculateNumber('DIVIDE', 4, 2), 2);
 		})
+
+    it('should return error when 2nd value is 0', function() {
+      assert.strictEqual(calculateNumber('DIVIDE', 1, 0), 'Error');
+    });
+
 	});
 
 });
