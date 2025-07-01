@@ -3,6 +3,9 @@ const express = require('express');
 const app = express();
 // the port
 const PORT = 7865;
+// need to use import json
+app.use(express.json());
+
 // welcome message response
 app.get('/', (req, res) => {
 	res.send('Welcome to the payment system')
@@ -27,7 +30,7 @@ app.get('/available_payments', (req, res) => {
 app.post('/login', (req, res) => {
     // usernam is the value from body
     const { userName } = req.body;
-    return res.send(`Welcome ${userName}`);
+    res.send(`Welcome ${userName}`);
 });
 // send to log the port message
 app.listen(PORT, () => {

@@ -47,7 +47,20 @@ describe('suite for index page', function() {
           done();
     });
   });
-  
+
+  // route for /login, need to post
+  it('Normal login', (done) => {
+      request.post({
+          url: 'http://localhost:7865/login',
+          json: {
+              userName: 'new user'
+          }
+      }, (error, response, body) => {
+          assert.strictEqual(body, 'Welcome new user');
+          done();
+      });
+  });
+
   describe('avaiable payments', () => {
     it('should return correct payments', (done) => {
       request('http://localhost:7865/available_payments', (error, response, body) => {
