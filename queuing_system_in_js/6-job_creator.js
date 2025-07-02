@@ -4,8 +4,8 @@ import kue from 'kue';
 const queKue = kue.createQueue();
 // the jobData format
 const jobData = {
-  phoneNumber: 'string',
-  message: 'string',
+  phoneNumber: '918-202-3345',
+  message: 'verifying',
 }
 // new job with our data
 const newJob = queKue.create('push_notification_code', jobData);
