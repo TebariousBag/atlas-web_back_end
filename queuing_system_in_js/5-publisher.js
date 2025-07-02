@@ -11,14 +11,15 @@ clientApp.on('connect', () => {
 clientApp.on('error', (err) => {
   console.log('Redis client not connected to the server: ERROR MESSAGE')
 });
-// subscribe to channel to receive messages on publish
-clientApp.subscribe('holberton school channel');
 
-clientApp.on('message', (channel, message) => {
-  console.log(message);
-  // if kill server, then unsubscribe to the channel and quit
-  if (message === 'KILL_SERVER') {
-    clientApp.unsubscribe();
-    clientApp.quit();
-  }
-});
+function publishMessage(message, time) {
+    setTimeout(() => {
+        console.log(`About to send ${message}`);
+        clientApp.publish('holberton school channel', message);
+    }, time);
+}
+
+publishMessage("Holberton Student #1 starts course", 100);
+publishMessage("Holberton Student #2 starts course", 200);
+publishMessage("KILL_SERVER", 300);
+publishMessage("Holberton Student #3 starts course", 400);
