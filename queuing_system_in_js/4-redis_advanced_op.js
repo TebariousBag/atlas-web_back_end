@@ -14,6 +14,8 @@ client.on('error', (err) => {
 // hset format, name, field, and then the value
 client.hset('HolbertonSchools', 'Portland', '50', print);
 client.hset('HolbertonSchools', 'Seattle', '80', print);
+// had to look up why New York was printed with quotes
+// heget does that when there is a space or special char
 client.hset('HolbertonSchools', 'New York', '20', print);
 client.hset('HolbertonSchools', 'Bogota', '20', print);
 client.hset('HolbertonSchools', 'Cali', '40', print);
